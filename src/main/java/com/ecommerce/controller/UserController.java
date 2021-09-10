@@ -66,10 +66,14 @@ public class UserController {
 	public User addUser(@RequestBody User user) {
 		double randomnum = Math.random();
 		long apitoken = (long)(Math.floor(randomnum*Math.pow(10, 16)));
-		
-		while (userrepository.findById(apitoken) != null){
+		Optional<User> usercheck= userrepository.findById(apitoken);
+		while (usercheck.isPresent()){
 			randomnum = Math.random();
 			apitoken = (long)(Math.floor(randomnum*Math.pow(10, 16)));
+			usercheck=userrepository.findById(apitoken);
+			System.out.println(apitoken);
+			System.out.println(usercheck);
+
 		}
 		user.setApitoken(apitoken);
 		return userrepository.save(user);	

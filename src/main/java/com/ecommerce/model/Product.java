@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "product")
 public class Product {
@@ -17,6 +20,31 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "productid")
 	private int productid;
+	
+	@Column(name = "season")
+	private String season;
+	
+	@Column(name = "brand")
+	private String brand;
+	
+	@Column(name = "category")
+	private String category;
+	
+	@Column(name = "price")
+	private float price;
+	
+	@Column(name = "color")
+	private String color;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Column(name = "createddate")
+	private Date createddate;
+	
+	@Column(name = "discount")
+	private int discount;
+//	
+//	@OneToOne
+//	private Purchase purchase;
 	
 	public int getProductid() {
 return productid;}
@@ -66,26 +94,14 @@ return discount;}
 public void setDiscount(int discount) {
 this.discount = discount;}
 
-@Column(name = "season")
-	private String season;
-	
-	@Column(name = "brand")
-	private String brand;
-	
-	@Column(name = "category")
-	private String category;
-	
-	@Column(name = "price")
-	private float price;
-	
-	@Column(name = "color")
-	private String color;
-	
-	@Column(name = "createddate")
-	private Date createddate;
-	
-	@Column(name = "discount")
-	private int discount;
+
+
+//public Purchase getPurchase() {
+//return purchase;}
+//
+//public void setPurchase(Purchase purchase) {
+//this.purchase = purchase;}
+//	
 	
 
 
